@@ -1,0 +1,4 @@
+#password-new, #password-confirm, input[type="password"] { width: auto; }
+#checkoutSuccessGuestPassword label.inputLabel { float: none; }
+#checkoutSuccessGuestPassword > div { padding-bottom: 10px; }
+#password-error { display: none; font-weight: bold; color: red; }
