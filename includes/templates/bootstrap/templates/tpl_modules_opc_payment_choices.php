@@ -7,6 +7,8 @@
 // The $enabled_payment_modules variable must be handled using foreach, since numerical keys
 // might have been removed if the payment method is not supported for guest-checkout!!
 //
+// Modified for use by the 'bootstrap' template:  Bootstrap/OPC v1.0.0
+//
 ?>
 <!--bof payment-method choices -->
 <?php
@@ -16,9 +18,9 @@
 //
 if ($shipping_module_available && $display_payment_block) {
 ?>
-  <div id="checkoutPaymentMethod" class="floatingBox forward clearRight">
-    <fieldset>
-      <legend><?php echo TABLE_HEADING_PAYMENT_METHOD; ?></legend>
+  <div id="checkoutPaymentMethod" class="card mb-3">
+    <h4 class="card-header"><?php echo TABLE_HEADING_PAYMENT_METHOD; ?></h4>
+    <div class="card-body">
 <?php 
     // ** BEGIN PAYPAL EXPRESS CHECKOUT **
     if (!$payment_modules->in_special_checkout()) {
@@ -32,9 +34,8 @@ if ($shipping_module_available && $display_payment_block) {
           
             }
 ?>
-      <br class="clearBoth" />
 <?php 
-    } 
+        } 
 
         $selection = $enabled_payment_modules;
         $num_selections = count($selection);
@@ -53,7 +54,7 @@ if ($shipping_module_available && $display_payment_block) {
         $radio_buttons = 0;
 
         foreach ($selection as $current_method) {
-        echo '<div class="custom-control custom-radio">'; 
+        echo '<div class="custom-control custom-radio mb-2">'; 
             $payment_id = $current_method['id'];
             if ($num_selections > 1) {
                 if (empty($current_method['noradio'])) {
@@ -84,8 +85,6 @@ if ($shipping_module_available && $display_payment_block) {
 <?php
             }
 ?>
-      <br class="clearBoth" />
-
 <?php
             if (isset($current_method['error'])) {
 ?>
@@ -113,12 +112,11 @@ if ($shipping_module_available && $display_payment_block) {
                     //
                     echo $current_field['field']; 
 ?>
-        <br class="clearBoth" />
+
 <?php
                 }
 ?>
       </div>
-      <br class="clearBoth" />
 <?php
             }
             $radio_buttons++;
@@ -133,10 +131,9 @@ if ($shipping_module_available && $display_payment_block) {
     }
     // ** END PAYPAL EXPRESS CHECKOUT **
 ?>
-    </fieldset>
+    </div>
   </div>
 <?php
 }  //-Shipping-method available, display payment block.
 ?>
-  <div class="clearBoth"></div>
 <!--eof payment-method choices -->

@@ -3,11 +3,14 @@
 // Part of the One-Page Checkout plugin, provided under GPL 2.0 license by lat9 (cindy@vinosdefrutastropicales.com).
 // Copyright (C) 2013-2020, Vinos de Frutas Tropicales.  All rights reserved.
 //
+// Modified for use by the 'bootstrap' template:  Bootstrap/OPC v1.0.0
+//
 ?>
 <!--bof billing-address block -->
-    <div id="checkoutOneBillto"<?php echo ($flagDisablePaymentAddressChange) ? ' class="opc-base"' : ''; ?>>
-      <fieldset>
-        <legend id="opc-billing-title"><?php echo ($shipping_billing) ? TITLE_BILLING_SHIPPING_ADDRESS : TITLE_BILLING_ADDRESS; ?></legend>
+    <div id="checkoutOneBillto" class="card mb-3<?php echo ($flagDisablePaymentAddressChange) ? ' opc-base' : ''; ?>">
+      <h4 class="card-header" id="opc-billing-title"><?php echo ($shipping_billing) ? TITLE_BILLING_SHIPPING_ADDRESS : TITLE_BILLING_ADDRESS; ?></h4>
+      <div class="card-body">
+
 <?php
 $opc_address_type = 'bill';
 $opc_disable_address_change = $flagDisablePaymentAddressChange;
@@ -19,26 +22,27 @@ if (!$flagDisablePaymentAddressChange) {
     $show_add_address = $_SESSION['opc']->showAddAddressField();
     $parameters = ($show_add_address) ? '' : ' class="hiddenField"';
 ?>
-        <div class="buttonRow opc-buttons">
-            <div class="custom-control custom-checkbox">
+        <div class="opc-buttons">
+
 <?php
     if ($show_add_address) {
 ?>
+            <div class="custom-control custom-checkbox">
                 <?php echo zen_draw_checkbox_field("add_address['bill']", '1', false, 'id="opc-add-bill"' . $parameters); ?>
                 <label class="checkboxLabel custom-control-label" for="add_address['bill']" title="<?php echo TITLE_ADD_TO_ADDRESS_BOOK; ?>"><?php echo TEXT_ADD_TO_ADDRESS_BOOK; ?></label>
+            </div>
 <?php
     }
 ?>
-            </div>
-            <div class="opc-right">
-                <span id="opc-bill-cancel"><?php echo zen_image_button(BUTTON_IMAGE_CANCEL, BUTTON_CANCEL_CHANGES_ALT, $cancel_title); ?></span>
-                <span id="opc-bill-save"><?php echo zen_image_button(BUTTON_IMAGE_UPDATE, BUTTON_SAVE_CHANGES_ALT, $save_title); ?></span>
+            <div class="d-flex justify-content-around mt-2">
+                <div id="opc-bill-cancel"><?php echo zen_image_button(BUTTON_IMAGE_CANCEL, BUTTON_CANCEL_CHANGES_ALT, $cancel_title); ?></div>
+                <div id="opc-bill-save"><?php echo zen_image_button(BUTTON_IMAGE_UPDATE, BUTTON_SAVE_CHANGES_ALT, $save_title); ?></div>
             </div>
         </div>
 <?php 
 } 
 ?>
-      </fieldset>
+      </div>
 
       <div class="opc-overlay<?php echo ($flagDisablePaymentAddressChange) ? ' active' : ''; ?>"></div>
 

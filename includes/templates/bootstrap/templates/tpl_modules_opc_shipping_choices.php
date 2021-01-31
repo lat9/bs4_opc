@@ -3,9 +3,11 @@
 // Part of the One-Page Checkout plugin, provided under GPL 2.0 license by lat9
 // Copyright (C) 2013-2019, Vinos de Frutas Tropicales.  All rights reserved.
 //
+// Modified for use by the 'bootstrap' template:  Bootstrap/OPC v1.0.0
+//
 ?>
 <!--bof shipping-method choices -->
-  <div id="checkoutShippingMethod" class="floatingBox forward">   
+  <div id="checkoutShippingMethod" class="card mb-3">
 <?php
 // -----
 // If the order contains only virtual products, the shipping block contains only a hidden field that
@@ -16,8 +18,8 @@ if ($is_virtual_order) {
 } else {
     if (zen_count_shipping_modules() > 0) {
 ?>
-    <fieldset>
-      <legend><?php echo TABLE_HEADING_SHIPPING_METHOD; ?></legend>
+    <h4 class="card-header"><?php echo TABLE_HEADING_SHIPPING_METHOD; ?></h4>
+    <div class="card-body">
 <?php
         if (count($quotes) > 1 && count($quotes[0]) > 1) {
             $checkout_one->debug_message("CHECKOUT_ONE_TEMPLATE_SHIPPING_QUOTES:\n" . var_export($_SESSION['shipping'], true) . "\n" . var_export($quotes, true));
@@ -53,7 +55,7 @@ if ($is_virtual_order) {
 <?php
         }
 ?>
-    </fieldset>
+    </div>
 <?php
     } else {
 ?>
