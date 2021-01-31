@@ -13,11 +13,8 @@
 
     <div id="addressBookNoPrimary"><?php echo TEXT_NO_ADDRESSES; ?></div>
     
-    <div class="buttonRow forward">
+    <div class="d-flex justify-content-around mt-3">
+        <a href="<?php echo zen_href_link(FILENAME_ACCOUNT, '', 'SSL'); ?>"><?php echo zen_image_button(BUTTON_IMAGE_BACK, BUTTON_BACK_ALT); ?></a>
         <a href="<?php echo zen_href_link(FILENAME_ADDRESS_BOOK_PROCESS, 'edit=' . $_SESSION['customer_default_address_id'], 'SSL'); ?>"><?php echo zen_image_button(BUTTON_IMAGE_ADD_ADDRESS, BUTTON_ADD_ADDRESS_ALT); ?></a>
     </div>
-    <div class="buttonRow back">
-        <a href="<?php echo zen_href_link(FILENAME_ACCOUNT, '', 'SSL'); ?>"><?php echo zen_image_button(BUTTON_IMAGE_BACK, BUTTON_BACK_ALT); ?></a>
-    </div>
-    <br class="clearBoth" />
 </div>
