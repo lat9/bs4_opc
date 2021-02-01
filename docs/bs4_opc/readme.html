@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bootstrap-4 Template/One-Page Checkout for Zen Cart 1.5.7 and Later</title>
+<style type="text/css">
+<!--
+a, a:active, 
+a:visited { 
+    color: #006666; 
+}
+a:hover { 
+    color:#00CC99; 
+}
+body, 
+p, 
+h1, 
+h2, 
+h3, 
+h4, 
+li, 
+td { 
+    font-family: Verdana, AvantGarde, Tahoma, Arial, sans-serif; 
+    font-size: 10pt; 
+    color: black; 
+    padding: 0px; 
+    margin: 20px; 
+}
+pre { 
+    margin: 20px; 
+}
+H1, 
+H2, 
+H3, 
+H4 { 
+    font-weight: bold 
+}
+h1 { 
+    font-size: 20px; 
+}
+h2 { 
+    font-size: 16px; 
+    border-top: 1px solid black;
+    padding-top: 5px;
+}
+ol li, 
+ul li { 
+    margin: 5px 0; 
+}
+.corefile, 
+.impt { 
+    color: red; 
+}
+.added { 
+    color: blue; 
+}
+img { 
+    margin-left: 20px; 
+    max-width: 95%; 
+}
+.removed { 
+    text-decoration: line-through; 
+}
+.smaller {
+    font-size: smaller;
+}
+-->
+</style>
+</head>
+
+<body>
+    <h1>Bootstrap-4 Template/One-Page Checkout for Zen Cart v1.5.7 and later</h1>
+    <h3>Version 1.0.0, by lat9</h3>
+    <p>Current Support Thread at Zen Cart Forums: <a href="https://www.zen-cart.com/showthread.php?223910-ZCA-Bootstrap-4-Template-Support-Thread" target="_blank">https://www.zen-cart.com/showthread.php?223910-ZCA-Bootstrap-4-Template-Support-Thread</a></p>
+    <p>Zen Cart Download Link: TBD
+    <p>GitHub repository: <a href="https://github.com/lat9/bs4_opc" target="_blank">https://github.com/lat9/bs4_opc</a>.</p>
+
+    <h2>What it does</h2>
+    <p>This sub-template builds on the <em>ZCA Bootstrap 4</em> (v3.1.0 or later), providing Bootstrap styling for the Zen Cart <a href="https://www.zen-cart.com/downloads.php?do=file&id=2095" target="_blank">One-Page Checkout</a> plugin (v2.3.7 or later).</p>
+    
+    <h2>Bootstrap+One-Page Checkout Template, Files List</h2>
+    <p>The following files are provided in the template's distribution:</p>
+    <ol>
+        <li>/includes/modules/sideboxes/bootstrap/information.php</li>
+        <li>/includes/templates/bootstrap/css/checkout_one.css</li>
+        <li>/includes/templates/bootstrap/css/checkout_one_confirmation.css</li>
+        <li>/includes/templates/bootstrap/css/checkout_success.css</li>
+        <li>/includes/templates/bootstrap/templates/tpl_address_book_register.php</li>
+        <li>/includes/templates/bootstrap/templates/tpl_checkout_one_confirmation_default.php</li>
+        <li>/includes/templates/bootstrap/templates/tpl_checkout_one_default.php</li>
+        <li>/includes/templates/bootstrap/templates/tpl_checkout_success_guest.php</li>
+        <li>/includes/templates/bootstrap/templates/tpl_create_account_register.php</li>
+        <li>/includes/templates/bootstrap/templates/tpl_create_account_success_register.php</li>
+        <li>/includes/templates/bootstrap/templates/tpl_login_guest.php</li>
+        <li>/includes/templates/bootstrap/templates/tpl_modules_opc_address_block.php</li>
+        <li>/includes/templates/bootstrap/templates/tpl_modules_opc_billing_address.php</li>
+        <li>/includes/templates/bootstrap/templates/tpl_modules_opc_comments.php</li>
+        <li>/includes/templates/bootstrap/templates/tpl_modules_opc_conditions.php</li>
+        <li>/includes/templates/bootstrap/templates/tpl_modules_opc_credit_selections.php</li>
+        <li>/includes/templates/bootstrap/templates/tpl_modules_opc_customer_info.php</li>
+        <li>/includes/templates/bootstrap/templates/tpl_modules_opc_instructions.php</li>
+        <li>/includes/templates/bootstrap/templates/tpl_modules_opc_payment_choices.php</li>
+        <li>/includes/templates/bootstrap/templates/tpl_modules_opc_shipping_address.php</li>
+        <li>/includes/templates/bootstrap/templates/tpl_modules_opc_shipping_choices.php</li>
+        <li>/includes/templates/bootstrap/templates/tpl_modules_opc_shopping_cart.php</li>
+        <li>/includes/templates/bootstrap/templates/tpl_modules_opc_submit_block.php</li>
+        <li>/includes/templates/bootstrap/templates/tpl_order_status_default.php</li>
+    </ol>
+
+    <h2>Installation</h2>
+    <p>This plugin provides a <em>Bootstrap 4</em> rendering for the <em>One-Page Checkout</em> pages.  You should have previously installed:</p>
+    <ol>
+        <li>The 'base' <em>ZCA Bootstrap 4</em> template, v3.1.0 or later: https://www.zen-cart.com/downloads.php?do=file&id=2191</li>
+        <li>The 'base' <em>One-Page Checkout</em> plugin, v2.3.7 or later: https://www.zen-cart.com/downloads.php?do=file&id=2095</li>
+    </ol>
+    <p>Once those 'base' file-sets have been installed, you're ready to install the 'sub-template' files.</p>
+    <ol>
+        <li>Unzip the template's package file, which you've most likely already done if you're reading this!</li>
+        <li>Copy all the files present to your storefront, overwriting the 'base' <code>bootstrap</code> template's directories.</li>
+        <li>If you've made a <a href="https://www.zen-cart.com/downloads.php?do=file&id=2087" target="_blank">clone</a> of the <code>bootstrap</code> template<ul type="a">
+            <li>Rename the <code>bootstrap</code> sub-directories in this sub-template's distribution to match the name of your &quot;clone&quot;.</li>
+            <li>Copy (or merge) all the files to your clone also.</li>
+        </ul></li>
+        <li>Delete the no-longer-used <code>/includes/templates/bootstrap/css/login.css</code> that is distributed by <em>One-Page Checkout</em> from both the 'base' bootstrap template and your clone.</li>
+    </ol>
+
+    <h2>Version History</h2>
+    <p>The following versions have been released:</p>
+    <ul>
+        <li>v1.0.0, 2021-02-01 (lat9)<ul>
+            <li>Initial release.</li>
+    </ul>
+
+</body>
+</html>
