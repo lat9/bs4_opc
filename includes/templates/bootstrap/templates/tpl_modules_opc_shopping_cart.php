@@ -11,50 +11,58 @@
 // Modified for use by the 'bootstrap' template:  Bootstrap/OPC v1.0.0
 //
 if (!defined('TEXT_OPTION_DIVIDER')) define('TEXT_OPTION_DIVIDER', '&nbsp;-&nbsp;');
+
+$display_tax_column = (count($order->info['tax_groups']) > 1);
+
+// -----
+// Setting here, for use by tpl_modules_order_totals.php further down.
+//
+$_SESSION['zca_bootstrap_ot_colspan'] = ($display_tax_column) ? '3' : '2';
 ?>
 <!--bof shopping-cart block -->
 <div class="table-responsive card mb-3">
     <h4 class="card-header"><?php echo HEADING_PRODUCTS; ?></h4>
     <div class="card-body">
-      <table class="cartTableDisplay table table-bordered table-striped">
-        <tr>
-            <td class="edit-button" colspan="<?php echo (count($order->info['tax_groups']) > 1) ? 3 : 2; ?>">&nbsp;</td>
-            <td class="edit-button"><?php echo '<a href="' . zen_href_link(FILENAME_SHOPPING_CART) . '">' . zen_image_button(BUTTON_IMAGE_EDIT_SMALL, BUTTON_EDIT_SMALL_ALT) . '</a>'; ?></td>
-        </tr>
-        
-        <tr class="cartTableHeading">
-          <th scope="col" id="ccQuantityHeading"><?php echo TABLE_HEADING_QUANTITY; ?></th>
-          <th scope="col" id="ccProductsHeading"><?php echo TABLE_HEADING_PRODUCTS; ?></th>
+        <div class="text-right mb-2">
+            <?php echo '<a href="' . zen_href_link(FILENAME_SHOPPING_CART) . '" class="d-block">' . zen_image_button(BUTTON_IMAGE_EDIT_SMALL, BUTTON_EDIT_SMALL_ALT) . '</a>'; ?>
+        </div>
+        <table class="cartTableDisplay table table-bordered table-striped">
+            <thead>
+                <tr class="cartTableHeading">
+                    <th scope="col" id="ccQuantityHeading"><?php echo TABLE_HEADING_QUANTITY; ?></th>
+                    <th scope="col" id="ccProductsHeading"><?php echo TABLE_HEADING_PRODUCTS; ?></th>
 <?php
 // If there are tax groups, display the tax columns for price breakdown
-if (count($order->info['tax_groups']) > 1) {
+if ($display_tax_column) {
 ?>
-          <th scope="col" id="ccTaxHeading"><?php echo HEADING_TAX; ?></th>
+                    <th scope="col" id="ccTaxHeading"><?php echo HEADING_TAX; ?></th>
 <?php
 }
 ?>
-          <th scope="col" id="ccTotalHeading" class="text-right"><?php echo TABLE_HEADING_TOTAL; ?></th>
-        </tr>
+                    <th scope="col" id="ccTotalHeading" class="text-right"><?php echo TABLE_HEADING_TOTAL; ?></th>
+                </tr>
+            </thead>
+            <tbody>
 <?php 
 // now loop thru all products to display quantity and price
 for ($i = 0, $n = count($order->products); $i < $n; $i++) {
 ?>
-        <tr>
-          <td class="cartQuantity"><?php echo $order->products[$i]['qty']; ?>&nbsp;x</td>
-          <td class="cartProductDisplay"><?php echo $order->products[$i]['name'] . $stock_check[$i]; ?>
+                <tr>
+                    <td class="cartQuantity"><?php echo $order->products[$i]['qty']; ?>&nbsp;x</td>
+                    <td class="cartProductDisplay"><?php echo $order->products[$i]['name'] . $stock_check[$i]; ?>
 <?php 
 // if there are attributes, loop thru them and display one per line
     if (isset ($order->products[$i]['attributes']) && count ($order->products[$i]['attributes']) > 0 ) {
 ?>
-            <ul class="cartAttribsList">
+                        <ul class="cartAttribsList">
 <?php
-        for ($j = 0, $n2 = count($order->products[$i]['attributes']); $j < $n2; $j++) {
+        foreach ($order->products[$i]['attributes'] as $next_attribute) {
 ?>
-              <li><?php echo $order->products[$i]['attributes'][$j]['option'] . TEXT_OPTION_DIVIDER . nl2br(zen_output_string_protected($order->products[$i]['attributes'][$j]['value'])); ?></li>
+                            <li><?php echo $next_attribute['option'] . TEXT_OPTION_DIVIDER . nl2br(zen_output_string_protected($next_attribute['value'])); ?></li>
 <?php
         } // end loop
 ?>
-            </ul>
+                        </ul>
 <?php
     } // endif attribute-info
     
@@ -62,41 +70,42 @@ for ($i = 0, $n = count($order->products); $i < $n; $i++) {
         echo '<br>' . $posStockMessage[$i];
     }
 ?>
-          </td>
+                    </td>
 <?php 
   // display tax info if exists
-    if (count($order->info['tax_groups']) > 1)  { 
+    if ($display_tax_column)  { 
 ?>
-          <td class="cartTotalDisplay"><?php echo zen_display_tax_value($order->products[$i]['tax']); ?>%</td>
+                    <td class="cartTotalDisplay"><?php echo zen_display_tax_value($order->products[$i]['tax']); ?>%</td>
 <?php
     }  // endif tax info display  
 ?>
-          <td class="cartTotalDisplay text-right">
+                    <td class="cartTotalDisplay text-right">
 <?php 
     echo $currencies->display_price($order->products[$i]['final_price'], $order->products[$i]['tax'], $order->products[$i]['qty']);
     if ($order->products[$i]['onetime_charges'] != 0 ) {
         echo '<br> ' . $currencies->display_price($order->products[$i]['onetime_charges'], $order->products[$i]['tax'], 1);
     }
 ?>
-          </td>
-        </tr>
+                    </td>
+                </tr>
 <?php  
 }  
 // end for loopthru all products 
 ?>
-    </table>
+            </tbody>
 <?php
 if (MODULE_ORDER_TOTAL_INSTALLED) {
 ?>
-        <table class="table table-bordered table-striped" id="orderTotalDivs">
+            <tfoot id="orderTotalDivs">
 <?php
     $order_total_modules->process(); 
     $order_total_modules->output();
 ?>
-        </table>
+            </tfoot>
 <?php
 }
 ?>
+        </table>
     </div>
 </div>
 <!--eof shopping-cart block -->
