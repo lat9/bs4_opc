@@ -42,7 +42,7 @@ foreach ($messages_to_check as $page_check) {
 }
 ?>
   <div class="row">
-    <div class="col-sm-6 col-md-4">
+    <div class="col-sm-6 col-lg-4">
 <?php
 // -----
 // Insert the (conditional) guest-login block.  That block's formatting will determine whether/not to render.
@@ -61,7 +61,7 @@ require $template->get_template_dir('tpl_modules_opc_shipping_address.php', DIR_
 ?>
     </div>
     
-    <div class="col-sm-6 col-md-4">
+    <div class="col-sm-6 col-lg-4">
 <?php
 // -----
 // Insert the shipping-method choices block.
@@ -80,7 +80,7 @@ require $template->get_template_dir('tpl_modules_opc_credit_selections.php', DIR
 ?>
     </div>
     
-    <div class="col-sm-12 col-md-4">
+    <div class="col-sm-12 col-lg-4">
 <?php
 // -----
 // Insert the shopping-cart/totals block.
