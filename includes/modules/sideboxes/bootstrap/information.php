@@ -45,7 +45,7 @@ if (DEFINE_CONTACT_US_STATUS <= 1) {
 
 //-bof-one-page-checkout-lat9  *** 1 of 1 ***
 if (defined('FILENAME_ORDER_STATUS') && defined('BOX_INFORMATION_ORDER_STATUS')) {
-    $information[] = '<a href="' . zen_href_link(FILENAME_ORDER_STATUS, '', 'SSL') . '">' . BOX_INFORMATION_ORDER_STATUS . '</a>';
+    $information[] = '<a class="' . $information_classes . '" href="' . zen_href_link(FILENAME_ORDER_STATUS, '', 'SSL') . '">' . BOX_INFORMATION_ORDER_STATUS . '</a>';
 }
 //-eof-one-page-checkout-lat9  *** 1 of 1 ***
 
