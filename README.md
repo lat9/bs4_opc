@@ -5,7 +5,7 @@ This repository is home to the integration of the Zen Cart [ZCA Bootstrap 4 Temp
 
 **Support Thread:** https://www.zen-cart.com/showthread.php?223910-ZCA-Bootstrap-4-Template-Support-Thread
 
-**Download Link:** https://www.zen-cart.com/downloads.php?do=file&id=TBD
+**Download Link:** https://www.zen-cart.com/downloads.php?do=file&id=2305
 
 ## Prerequisites
 
