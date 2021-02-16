@@ -7,6 +7,8 @@
 // when the One-Page Checkout plugin is installed, its "account registration" processing is enabled and the currently
 // logged-in customer has completed account "registration" but has not (yet) provided their default address information.
 //
+// Modified for use by the 'bootstrap' template:  Bootstrap/OPC v1.0.0
+//
 ?>
 <div class="centerColumn" id="addressBookDefault">
     <h1 id="addressBookDefaultHeading"><?php echo HEADING_TITLE; ?></h1>
