@@ -44,7 +44,7 @@ if ($is_virtual_order) {
 ?>
                 <div class="custom-control custom-checkbox">
                     <?php echo zen_draw_checkbox_field("add_address['ship']", '1', false, 'id="opc-add-ship"' . $parameters); ?>
-                    <label class="checkboxLabel custom-control-label" for="add_address['ship']" title="<?php echo TITLE_ADD_TO_ADDRESS_BOOK; ?>"><?php echo TEXT_ADD_TO_ADDRESS_BOOK; ?></label>
+                    <label class="checkboxLabel custom-control-label" for="opc-add-ship" title="<?php echo TITLE_ADD_TO_ADDRESS_BOOK; ?>"><?php echo TEXT_ADD_TO_ADDRESS_BOOK; ?></label>
                 </div>
 <?php
         }

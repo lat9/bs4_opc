@@ -29,7 +29,7 @@ if (!$flagDisablePaymentAddressChange) {
 ?>
             <div class="custom-control custom-checkbox">
                 <?php echo zen_draw_checkbox_field("add_address['bill']", '1', false, 'id="opc-add-bill"' . $parameters); ?>
-                <label class="checkboxLabel custom-control-label" for="add_address['bill']" title="<?php echo TITLE_ADD_TO_ADDRESS_BOOK; ?>"><?php echo TEXT_ADD_TO_ADDRESS_BOOK; ?></label>
+                <label class="checkboxLabel custom-control-label" for="opc-add-bill" title="<?php echo TITLE_ADD_TO_ADDRESS_BOOK; ?>"><?php echo TEXT_ADD_TO_ADDRESS_BOOK; ?></label>
             </div>
 <?php
     }
