@@ -1,9 +1,9 @@
 <?php
 // -----
 // Part of the One-Page Checkout plugin, provided under GPL 2.0 license by lat9 (cindy@vinosdefrutastropicales.com).
-// Copyright (C) 2013-2020, Vinos de Frutas Tropicales.  All rights reserved.
+// Copyright (C) 2013-2021, Vinos de Frutas Tropicales.  All rights reserved.
 //
-// Modified for use by the 'bootstrap' template:  Bootstrap/OPC v1.0.0
+// Modified for use by the 'bootstrap' template:  Bootstrap/OPC v1.0.2
 //
 ?>
 <!--bof shipping-address block -->
