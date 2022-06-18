@@ -6,7 +6,7 @@
 // Adapted from the like-named page handling with the following history:
 // - Integrated COWAA v1.0 (@davewest)
 //
-// Modified for use by the 'bootstrap' template:  Bootstrap/OPC v1.0.0
+// Modified for use by the 'bootstrap' template:  Bootstrap/OPC v1.0.5
 //
 //use the following defines if you want to turn off payment, products, shipping
 define('DISPLAY_PAYMENT', true);
@@ -59,7 +59,7 @@ if (isset($order)) {
 <?php
                 foreach ($current_product['attributes'] as $current_attribute) {
 ?>
-                                <li><?php echo $current_attribute['option'] . TEXT_OPTION_DIVIDER . nl2br($current_attribute['value']); ?></li>
+                                <li><?php echo $current_attribute['option'] . TEXT_OPTION_DIVIDER . nl2br(zen_output_string_protected($current_attribute['value'])); ?></li>
 <?php
                 }
 ?>
@@ -104,14 +104,14 @@ if (isset($order)) {
     // We'll set the order's email address into the session for that module's processing and then remove
     // that value, once finished.
     //
-    if (DOWNLOAD_ENABLED == 'true') {
+    if (DOWNLOAD_ENABLED === 'true') {
         require $template->get_template_dir('tpl_modules_downloads.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_modules_downloads.php';
     }
     
     // -----
     // Display the order's status information.
     //
-    if (count($statusArray) > 0) {
+    if (!empty($statusArray)) {
 ?>
             <h3 class="text-center"><?php echo HEADING_ORDER_HISTORY; ?></h3>
             <table class="table table-bordered table-striped">
@@ -121,14 +121,21 @@ if (isset($order)) {
                     <th scope="col" id="myAccountStatusComments"><?php echo TABLE_HEADING_STATUS_COMMENTS; ?></th>
                 </tr>
 <?php
+        // -----
+        // Only the **first** order comment -- the one provided by the customer -- is "protected", i.e. any HTML tags
+        // display as the tag itself without the HTML being formatted.  All others have been provided by an
+        // admin or a trusted 3rd-party (like a payment method) and are trusted not to have 'naughty' HTML.
+        //
+        $protected = true;
         foreach ($statusArray as $statuses) {
 ?>
                 <tr>
                     <td><?php echo zen_date_short($statuses['date_added']); ?></td>
                     <td><?php echo $statuses['orders_status_name']; ?></td>
-                    <td><?php echo (empty($statuses['comments']) ? '&nbsp;' : nl2br(zen_output_string_protected($statuses['comments']))); ?></td> 
+                    <td><?php echo (empty($statuses['comments'])) ? '&nbsp;' : nl2br(zen_output_string($statuses['comments'], false, $protected)); ?></td> 
                 </tr>
 <?php
+            $protected = false;
         }
 ?>
             </table>
