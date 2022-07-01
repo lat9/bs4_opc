@@ -1,9 +1,9 @@
 <?php
 // -----
 // Part of the One-Page Checkout plugin, provided under GPL 2.0 license by lat9 (cindy@vinosdefrutastropicales.com).
-// Copyright (C) 2017-2020, Vinos de Frutas Tropicales.  All rights reserved.
+// Copyright (C) 2017-2022, Vinos de Frutas Tropicales.  All rights reserved.
 //
-// Modified for use by the 'bootstrap' template:  Bootstrap/OPC v1.0.0
+// Modified for use by the 'bootstrap' template:  Bootstrap/OPC v1.0.5
 //
 ?>
 <div class="centerColumn" id="loginOpcDefault">
@@ -23,7 +23,6 @@ $login_formname = (PROJECT_VERSION_MAJOR . '.' . PROJECT_VERSION_MINOR >= '1.5.7
 //$block_class = 'opc-block-' . $num_columns;
 $bs_column_width = ($num_columns > 0) ? 12 / $num_columns : 1;
 $block_class = 'col-md-' . $bs_column_width;
-
 ?>
   <div class="row">
 <?php
@@ -65,19 +64,35 @@ foreach ($column_blocks as $display_blocks) {
         </div>
 <?php
                     break;
-                
-                    // -----
-                    // PayPal Express Checkout Shortcut Button
-                    //
-                    case 'P':
+
+                // -----
+                // PayPal Express Checkout Shortcut Button.
+                //
+                // Note: OPC v2.4.1 introduces a flag that indicates whether the 'divider' should be displayed
+                // before or after the PPEC button.  The 'legacy' default is 'next' (i.e. after the button).
+                //
+                case 'P':
+                    if (!isset($ppec_divider_location)) {
+                        $ppec_divider_location = 'next';
+                    }
+                    if ($ppec_divider_location === 'prev') {
+?>
+        <hr>
+<?php
+                        echo TEXT_NEW_CUSTOMER_POST_INTRODUCTION_DIVIDER;
+                    }
 ?>
         <div class="information"><?php echo TEXT_NEW_CUSTOMER_INTRODUCTION_SPLIT; ?></div>
         <div class="center"><?php require DIR_FS_CATALOG . DIR_WS_MODULES . 'payment/paypal/tpl_ec_button.php'; ?></div>
+<?php
+                    if ($ppec_divider_location === 'next') {
+?>
         <hr>
-<?php 
-                    echo TEXT_NEW_CUSTOMER_POST_INTRODUCTION_DIVIDER;
+<?php
+                        echo TEXT_NEW_CUSTOMER_POST_INTRODUCTION_DIVIDER;
+                    }
                     break;
-                  
+
                 // -----
                 // Guest-checkout link
                 //
@@ -105,7 +120,7 @@ foreach ($column_blocks as $display_blocks) {
         </div>
 <?php
                     break;
-                    
+
                 // -----
                 // Create/register account link.
                 //
@@ -127,7 +142,7 @@ foreach ($column_blocks as $display_blocks) {
         </div>
 <?php
                     break;
-                    
+
                 // -----
                 // Account benefits display
                 //
@@ -155,7 +170,7 @@ foreach ($column_blocks as $display_blocks) {
         </div>
 <?php
                     break;
-                    
+
                 // -----
                 // Anything else, nothing to do.
                 //
